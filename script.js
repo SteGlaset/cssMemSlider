@@ -36,6 +36,16 @@ const images = [
         'src': './images/pets-woody.webp',
         'alt': 'Woody',
         'description': 'Woody'
+    },
+    {
+        'src': './images/ja-vas-unichtozhu-mem-1.jpg',
+        'alt': 'Ponasenkov',
+        'description': 'Meme slider'
+    },
+    {
+        'src': './images/TJDDKISEqUNW05x9_DXLl4d5VTj3gQz4VpbOEdabnVqH7sjqynTnWbIBTTnzbT6EaezJ63DkJoLRmPUbI2ZYt6Tb.jpg',
+        'alt': 'Slippy cat',
+        'description': 'Meow'
     }
 ];
 
@@ -50,42 +60,60 @@ images.forEach(() => {
 });
 
 //Slider initialisation
-function addImage(index) {
-    if (slider.hasChildNodes()) {
-        const firstChild = slider.childNodes[0];
+function disableButtons() {
+    buttons.childNodes.forEach((button) => {
+        button.disabled = !button.disabled;
+    });
+}
 
+function addImage(index) {
+    disableButtons();
+
+    const image = document.createElement('img');
+
+    let offset = 0;
+    if (slider.hasChildNodes()) {
+        
+        const firstChild = slider.childNodes[0];
+        offset = -firstChild.width / 2;
+        console.log(firstChild.width)
+        image.style.transform = 'translate(' + offset + 'px) scale(' + 0.7 + ')';
         firstChild.style.opacity = 1;
+
         let left = 0;
+        firstChild.style.transform = 'translate(' + left + '%)';
         let timer = setInterval(() => {
             if (firstChild.style.opacity <= 0) {
                 slider.removeChild(firstChild);
+                offset = 0;
+                image.style.transform = 'translate(' + offset + 'px)';
+                disableButtons();
                 clearInterval(timer);
             }
-            left -= 8;
-            firstChild.style.left = left + 'px';
+            left -= 2;
+            firstChild.style.transform = 'translate(' + left + '%)';
             firstChild.style.opacity -= 0.02;
         }, 15);
         
     }
     
-    const image = document.createElement('img');
     image.classList.add('image');
     image.setAttribute('src', images[index]['src']);
     image.setAttribute('alt', images[index]['alt']);
 
     slider.appendChild(image);
 
+    
+
     let scale = 0.7;
     let timer = setInterval(() => {
-        if (scale >= 1) {
+        if (scale >= 0.99) {
+            if (slider.childNodes.length === 1) disableButtons();
             clearInterval(timer);
         }
-        scale += 0.01 
-        console.log(image.style.left)
-        image.style.transform = 'scale(' + scale + ',' + scale + ')';
-    }, 15);
-
-    
+        scale += 0.01;
+        image.style.transform = 'translate(' + offset + 'px) scale(' + scale + ',' + scale + ')';
+    }, 15);   
 }
 
 function addDescription(index) {
