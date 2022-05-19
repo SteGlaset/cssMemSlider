@@ -12,7 +12,8 @@ body {
 }
 
 .slider-container {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
     padding-top: 20px;
     margin: auto;
 }
@@ -118,15 +119,15 @@ body {
     box-shadow: 0 0 7px rgb(230, 159, 27);
 }
 
-#radio-1:checked ~ .buttons .button .btn-inner__1,
-#radio-2:checked ~ .buttons .button .btn-inner__2,
-#radio-3:checked ~ .buttons .button .btn-inner__3,
-#radio-4:checked ~ .buttons .button .btn-inner__4,
-#radio-5:checked ~ .buttons .button .btn-inner__5,
-#radio-6:checked ~ .buttons .button .btn-inner__6,
-#radio-7:checked ~ .buttons .button .btn-inner__7,
-#radio-8:checked ~ .buttons .button .btn-inner__8,
-#radio-9:checked ~ .buttons .button .btn-inner__9 {
+#radio-1:checked ~ .flex .buttons .button .btn-inner__1,
+#radio-2:checked ~ .flex .buttons .button .btn-inner__2,
+#radio-3:checked ~ .flex .buttons .button .btn-inner__3,
+#radio-4:checked ~ .flex .buttons .button .btn-inner__4,
+#radio-5:checked ~ .flex.buttons .button .btn-inner__5,
+#radio-6:checked ~ .flex .buttons .button .btn-inner__6,
+#radio-7:checked ~ .flex .buttons .button .btn-inner__7,
+#radio-8:checked ~ .flex .buttons .button .btn-inner__8,
+#radio-9:checked ~ .flex .buttons .button .btn-inner__9 {
     border: 2px solid white;
     background-color: transparent;
     box-shadow: 0 0 0;
@@ -159,15 +160,15 @@ body {
     animation: TextMove .2s forwards;
 }
 
-#radio-1:checked ~ .description .text__1,
-#radio-2:checked ~ .description .text__2,
-#radio-3:checked ~ .description .text__3,
-#radio-4:checked ~ .description .text__4,
-#radio-5:checked ~ .description .text__5,
-#radio-6:checked ~ .description .text__6,
-#radio-7:checked ~ .description .text__7,
-#radio-8:checked ~ .description .text__8,
-#radio-9:checked ~ .description .text__9 {
+#radio-1:checked ~ .flex .description .text__1,
+#radio-2:checked ~ .flex .description .text__2,
+#radio-3:checked ~ .flex .description .text__3,
+#radio-4:checked ~ .flex .description .text__4,
+#radio-5:checked ~ .flex .description .text__5,
+#radio-6:checked ~ .flex .description .text__6,
+#radio-7:checked ~ .flex .description .text__7,
+#radio-8:checked ~ .flex .description .text__8,
+#radio-9:checked ~ .flex .description .text__9 {
     display: block;
 }
 
@@ -180,6 +181,29 @@ body {
     to {
         opacity: 1;
         margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .slide {
+        min-width: 400px;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: space-between;
+        min-width: 20vw;
+    }
+
+    .buttons {
+        display: inline-flex;
+        order: 2;
+    }
+
+    .description {
+        display: inline-block;
+        order: 1;
+        padding-left: 10px;
     }
 }
 
