@@ -1,0 +1,209 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(7, 14, 54);
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.slider-container {
+    display: inline-flex;
+    flex-direction: column;
+    padding-top: 20px;
+    margin: auto;
+}
+
+.slider {
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.slide {
+    max-width: 80vw;
+    max-height: 80vh;
+    border-radius: 10px;
+    display: none;
+    -webkit-animation: SlideMove .2s forwards;
+    -o-animation: SlideMove .2s forwards;
+    animation: SlideMove .2s forwards;
+}
+
+@keyframes SlideMove {
+    from {
+        transform: scale(0.7);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.buttons {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.slide-btn {
+    display: none;
+}
+
+.button {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    border-radius: 26px;
+    cursor: pointer;
+}
+
+.btn-inner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin: auto;
+    background-color: white;
+    border-radius: 14px;
+    transition: all .06s;
+    -webkit-animation: Color-out .2s;
+    -o-animation: Color-out .2s;
+    animation: Color-out .2s;
+}
+
+@keyframes Color-out {
+    0% {
+        background: linear-gradient(0deg, rgb(7, 14, 54) 0%, rgb(7, 14, 54) 100%);
+    }
+
+    20% {
+        background: linear-gradient(0deg, rgb(7, 14, 54) 0%, rgb(255, 255, 255) 100%);
+    }
+
+    100% {
+        background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+    }
+}
+
+.button:hover>.btn-inner {
+    background-color: rgba(230, 159, 27, 0.822);
+    -webkit-animation: Coloring .2s;
+    -o-animation: Coloring .2s;
+    animation: Coloring .2s;
+}
+
+@keyframes Coloring {
+    0% {
+        background: linear-gradient(0deg, rgb(7, 14, 54) 0%, rgb(7, 14, 54) 100%);
+    }
+
+    20% {
+        background: linear-gradient(0deg, rgba(230, 159, 27, 0.822) 0%, rgb(7, 14, 54) 100%);
+    }
+
+    100% {
+        background: linear-gradient(0deg, rgba(230, 159, 27, 0.822) 0%, rgba(230, 159, 27, 0.822) 100%);
+    }
+}
+
+.button:active>.btn-inner {
+    background-color: rgb(255, 166, 0);
+    box-shadow: 0 0 7px rgb(230, 159, 27);
+}
+
+#radio-1:checked ~ .flex .buttons .button .btn-inner__1,
+#radio-2:checked ~ .flex .buttons .button .btn-inner__2,
+#radio-3:checked ~ .flex .buttons .button .btn-inner__3,
+#radio-4:checked ~ .flex .buttons .button .btn-inner__4,
+#radio-5:checked ~ .flex.buttons .button .btn-inner__5,
+#radio-6:checked ~ .flex .buttons .button .btn-inner__6,
+#radio-7:checked ~ .flex .buttons .button .btn-inner__7,
+#radio-8:checked ~ .flex .buttons .button .btn-inner__8,
+#radio-9:checked ~ .flex .buttons .button .btn-inner__9 {
+    border: 2px solid white;
+    background-color: transparent;
+    box-shadow: 0 0 0;
+    -webkit-animation: none;
+    -o-animation: none;
+    animation: none;
+}
+
+#radio-1:checked ~ .slider .slide__1,
+#radio-2:checked ~ .slider .slide__2,
+#radio-3:checked ~ .slider .slide__3,
+#radio-4:checked ~ .slider .slide__4,
+#radio-5:checked ~ .slider .slide__5,
+#radio-6:checked ~ .slider .slide__6,
+#radio-7:checked ~ .slider .slide__7,
+#radio-8:checked ~ .slider .slide__8,
+#radio-9:checked ~ .slider .slide__9 {
+    display: block;
+}
+
+.description {
+    color: white;
+    font-size: 2rem;
+}
+
+.text {
+    display: none;
+    -webkit-animation: TextMove .2s forwards;
+    -o-animation: TextMove .2s forwards;
+    animation: TextMove .2s forwards;
+}
+
+#radio-1:checked ~ .flex .description .text__1,
+#radio-2:checked ~ .flex .description .text__2,
+#radio-3:checked ~ .flex .description .text__3,
+#radio-4:checked ~ .flex .description .text__4,
+#radio-5:checked ~ .flex .description .text__5,
+#radio-6:checked ~ .flex .description .text__6,
+#radio-7:checked ~ .flex .description .text__7,
+#radio-8:checked ~ .flex .description .text__8,
+#radio-9:checked ~ .flex .description .text__9 {
+    display: block;
+}
+
+@keyframes TextMove {
+    from {
+        opacity: 0;
+        margin-left: 40px;
+    }
+
+    to {
+        opacity: 1;
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .slide {
+        min-width: 400px;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: space-between;
+        min-width: 20vw;
+    }
+
+    .buttons {
+        display: inline-flex;
+        order: 2;
+    }
+
+    .description {
+        display: inline-block;
+        order: 1;
+        padding-left: 10px;
+    }
+}
+
